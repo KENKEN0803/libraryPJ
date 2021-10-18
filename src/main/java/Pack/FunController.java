@@ -890,7 +890,6 @@ public class FunController {
     @RequestMapping(value = "/myReserve")
     public String myReserve(Model model, HttpServletRequest req, HttpServletResponse response,
                             HttpSession session) {
-
         response.setContentType("text/html; charset=utf-8");
 
         String mem_id = (String) session.getAttribute("member");
@@ -958,6 +957,17 @@ public class FunController {
 
     @RequestMapping(value = "/reserveDeleteAdmin")
     public String reserveDeleteAdmin(Model model, HttpServletRequest req, HttpServletResponse response, HttpSession session) {
+        if (session.getAttribute("admin") == null) {
+            response.setContentType("text/html; charset=utf-8");
+            try {
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('관리자만 이용가능합니다.'); location.href ='/';</script>");
+                out.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "index";
+        }
         FunDAO funDAO = new FunDAO();
         memberBean mb = new memberBean();
         reserveBean rb = new reserveBean();
@@ -986,5 +996,4 @@ public class FunController {
         model.addAttribute("id", id);
         return "indexAdmin";
     }
-
 }

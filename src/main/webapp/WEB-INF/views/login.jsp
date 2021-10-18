@@ -45,6 +45,7 @@
                         </td>
                     </tr>
                 </table>
+            </div>
         </form>
         <div align="center">
             <button onclick="location.href='/index_adm'" class="btn btn-outline-dark btn-lg">관리자 로그인</button>
@@ -52,8 +53,8 @@
             <button onclick="location.href='/findpass'" class="btn btn-outline-dark btn-lg">비밀번호 찾기</button>
             <button onclick="location.href='/Join'" class="btn btn-outline-dark btn-lg">회원가입</button>
         </div>
-    </div>
 
+    </div>
     <%@include file="footer.jsp" %>
 </div>
 </body>
