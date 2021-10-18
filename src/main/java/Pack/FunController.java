@@ -21,11 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FunController {
 
-//    @RequestMapping("/error")
-//    public String err() {
-//        return "index";
-//    }
-
     @RequestMapping(value = "/")
     public String home() {
         System.out.println("컨트롤러 콜");
