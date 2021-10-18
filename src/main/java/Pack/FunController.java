@@ -859,7 +859,6 @@ public class FunController {
     }
 
 
-
     //회원가입 안내 페이지로 이동
     @RequestMapping(value = "/memberJoinEx")
     public String memberJoinEx() {
@@ -960,6 +959,7 @@ public class FunController {
         funDAO.delete("reserveDelete", rb);
         return "index";
     }
+
     @RequestMapping(value = "/reserveDeleteAdmin")
     public String reserveDeleteAdmin(Model model, HttpServletRequest req, HttpServletResponse response, HttpSession session) {
         FunDAO funDAO = new FunDAO();
@@ -968,7 +968,7 @@ public class FunController {
         List<reserveBean> reserve = null;
 
         String b_id = req.getParameter("b_id");
-        String id = (String)req.getParameter("member");
+        String id = (String) req.getParameter("member");
 
         mb.setMem_id(id);
         reserve = funDAO.select("myReserve", id);
@@ -986,8 +986,8 @@ public class FunController {
         rb.setMem_id(id);
         funDAO.delete("reserveDelete", rb);
         model.addAttribute("res", reserve);
-        model.addAttribute("mem",funDAO.searching("mem_myrent", id));
-        model.addAttribute("id",id);
+        model.addAttribute("mem", funDAO.searching("mem_myrent", id));
+        model.addAttribute("id", id);
         return "indexAdmin";
     }
 }

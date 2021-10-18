@@ -8,11 +8,11 @@
     <title>도서 정보 - 관리자</title>
 </head>
 <body>
-<%@include file="headAdmin.jsp"%>
+<%@include file="headAdmin.jsp" %>
 
 <%
     int rowCnt = 1;
-    List<Map<String, Object>> mem = (List<Map<String, Object>>)request.getAttribute("total");
+    List<Map<String, Object>> mem = (List<Map<String, Object>>) request.getAttribute("total");
 %>
 <h1 align="center" style="margin-top: 10px">전체 도서 현황</h1>
 <hr/>
@@ -30,17 +30,18 @@
     </thead>
     <tbody>
     <c:forEach items="${res}" var="list">
-    <tr>
-        <th scope="row"><%=rowCnt++%></th>
-        <td>${list.book_b_id}</td>
-        <td>${list.b_name}</td>
-        <td>${list.rent_date}</td>
-        <td>${list.return_date}</td>
-        <td>${list.member_mem_id}</td>
-    </tr>
+        <tr>
+            <th scope="row"><%=rowCnt++%>
+            </th>
+            <td>${list.book_b_id}</td>
+            <td>${list.b_name}</td>
+            <td>${list.rent_date}</td>
+            <td>${list.return_date}</td>
+            <td>${list.member_mem_id}</td>
+        </tr>
     </c:forEach>
     </tbody>
 </table>
-<%@include file="footer.jsp"%>
+<%@include file="footer.jsp" %>
 </body>
 </html>

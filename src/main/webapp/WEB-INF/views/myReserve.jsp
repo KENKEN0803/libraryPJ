@@ -36,56 +36,56 @@
 </style>
 <body>
 
-    <%@include file="head.jsp" %>
-    <div class="table" style="margin-left:10%; margin-right:10%;">
-        <table>
-            <thead>
+<%@include file="head.jsp" %>
+<div class="table" style="margin-left:10%; margin-right:10%;">
+    <table>
+        <thead>
+        <tr>
+            <th> No.</th>
+            <th> 도서명</th>
+            <th> 저자</th>
+            <th> 예약일</th>
+            <th> 순위</th>
+            <th> 취소</th>
+        </tr>
+        </thead>
+        <c:if test="${res.size()==0}">예약정보가 없습니다</c:if>
+        <c:if test="${res.size()!=0}">
+        <% int rownum = 1;%>
+        <c:forEach items="${res}" var="list">
             <tr>
-                <th> No.</th>
-                <th> 도서명</th>
-                <th> 저자</th>
-                <th> 예약일</th>
-                <th> 순위</th>
-                <th> 취소</th>
+                <td>
+                    <%=rownum%>
+                    <%rownum++;%>
+                </td>
+                <td>
+                        ${list.b_name}
+                </td>
+                <td>
+                        ${list.b_author}
+                </td>
+                <td>
+                        ${list.reserve_date}
+                </td>
+                <td>
+                        ${list.b_rank}
+                </td>
+                <td>
+                    <form onsubmit="return confirm('예약을 취소하시겠습니까?');" method=Post
+                          action="reserveDelete">
+                        <input type="hidden" name="b_id" value="${list.b_id}">
+                        <input type="submit" value="취소">
+                    </form>
+                </td>
             </tr>
-            </thead>
-            <c:if test="${res.size()==0}">예약정보가 없습니다</c:if>
-            <c:if test="${res.size()!=0}">
-            <% int rownum = 1;%>
-            <c:forEach items="${res}" var="list">
-                <tr>
-                    <td>
-                        <%=rownum%>
-                        <%rownum++;%>
-                    </td>
-                    <td>
-                            ${list.b_name}
-                    </td>
-                    <td>
-                            ${list.b_author}
-                    </td>
-                    <td>
-                            ${list.reserve_date}
-                    </td>
-                    <td>
-                            ${list.b_rank}
-                    </td>
-                    <td>
-                        <form onsubmit="return confirm('예약을 취소하시겠습니까?');" method=Post
-                              action="reserveDelete">
-                            <input type="hidden" name="b_id" value="${list.b_id}">
-                            <input type="submit" value="취소">
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
-            <hr/>
-        </table>
-        </c:if>
+        </c:forEach>
         <hr/>
-    </div>
-    <!-- =========================FOOOTER =============================== -->
-    <%@include file="footer.jsp" %>
+    </table>
+    </c:if>
+    <hr/>
+</div>
+<!-- =========================FOOOTER =============================== -->
+<%@include file="footer.jsp" %>
 
 
 </body>
