@@ -22,10 +22,9 @@
         </form>
         <table style="margin: auto" width="50%">
             <tr>
+                <td><img src="./images/bookcover/${list.b_ISBN}.PNG"
+                         onerror="this.src='./images/bookcover/no-img.png'" width="250"/></td>
                 <td>
-                    <img src="./images/bookcover/${list.b_ISBN}.PNG"
-                         onerror="this.src='./images/bookcover/no-img.png'" width="250"/>
-                </td>
                 <td style="text-align: left">
                     <div style="font-weight: bold; font-size: large">도서명 : ${list.b_name}</div>
                     <br/>
@@ -54,10 +53,11 @@
                     <c:if test="${list.reserve_date == null && list.return_date == null}">
                         <img src="/images/book.png" style="width: 30px; height: 30px">
                         <span style="color: #113CFC; font-weight: bold">&nbsp; 대여가능</span>
-                        <%--                        <button onclick="rent('${list.b_id}')" class="btn btn-outline-danger">대여 가능</button>--%>
                     </c:if>
                     <br/>
                     <br/>
+                </td>
+                <td style="text-align: center">
                     <div id="${list.b_id}" style="display: none"></div>
                     <script>
                         var qrcode = new QRCode(document.getElementById("${list.b_id}"), {

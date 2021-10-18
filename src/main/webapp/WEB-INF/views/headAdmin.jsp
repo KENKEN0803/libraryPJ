@@ -8,6 +8,7 @@
     <div class="headerlogo four columns">
         <div class="logo">
             <a href="indexAdmin">
+
                 <img alt="logo.png" src="images/logoAdmin.png">
             </a>
         </div>

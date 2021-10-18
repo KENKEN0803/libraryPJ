@@ -152,7 +152,8 @@
             </p>
             <div class="four columns">
                 <h1>더존 도서관</h1>
-                소개글 2021년에 설립되어 어쩌고 도서관 입니다.
+
+                2021년에 설립된 도서관 입니다.
             </div>
             <div class="four columns">
                 <h1>오시는길</h1>

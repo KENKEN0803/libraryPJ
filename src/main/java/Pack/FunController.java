@@ -85,7 +85,7 @@ public class FunController {
             } else {
                 try {
                     PrintWriter out = response.getWriter();
-                    out.println("<script>alert('로그인 해주세요.');</script>");
+                    out.println("<script>alert('로그인 해주세요.'); location.href='/' </script>");
                     out.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -96,7 +96,7 @@ public class FunController {
         } else {
             try {
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('로그인 해주세요.');</script>");
+                out.println("<script>alert('로그인 해주세요.'); location.href='/'; </script>");
                 out.flush();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -112,7 +112,7 @@ public class FunController {
             response.setContentType("text/html; charset=utf-8");
             try {
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('관리자만 이용가능합니다.');</script>");
+                out.println("<script>alert('관리자만 이용가능합니다.'); location.href='/';</script>");
                 out.flush();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -146,7 +146,7 @@ public class FunController {
             response.setContentType("text/html; charset=utf-8");
             try {
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('관리자만 이용가능합니다.');</script>");
+                out.println("<script>alert('관리자만 이용가능합니다.'); location.href='/';</script>");
                 out.flush();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -197,7 +197,7 @@ public class FunController {
         if (session.getAttribute("member") == null) {
             try {
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('로그인 해주세요.');</script>");
+                out.println("<script>alert('로그인 해주세요.'); location.href='/login';</script>");
                 out.flush();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -369,7 +369,7 @@ public class FunController {
         if (count == 0) { //빌린 책이 없을 경우
             try {
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('탈퇴되었습니다.');location.href='/'</script>");
+                out.println("<script>alert('탈퇴되었습니다.');location.href='/';</script>");
                 out.flush();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -382,7 +382,7 @@ public class FunController {
             try {
                 System.out.println("빌린 책 존재");
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('대여하신 책을 반납해주신 후 탈퇴 시도해주세요.');location.href='/memUpdatePage'</script>");
+                out.println("<script>alert('대여하신 책을 반납해주신 후 탈퇴 시도해주세요.');location.href='/memUpdatePage';</script>");
                 out.flush();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -397,7 +397,7 @@ public class FunController {
             response.setContentType("text/html; charset=utf-8");
             try {
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('관리자만 이용가능합니다.');</script>");
+                out.println("<script>alert('관리자만 이용가능합니다.'); location.href ='/';</script>");
                 out.flush();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -414,7 +414,7 @@ public class FunController {
             response.setContentType("text/html; charset=utf-8");
             try {
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('관리자만 이용가능합니다.');</script>");
+                out.println("<script>alert('관리자만 이용가능합니다.'); location.href ='/'; </script>");
                 out.flush();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -471,7 +471,18 @@ public class FunController {
     //관리자 페이지
     //전체 대여 현황 조회 페이지 이동
     @RequestMapping(value = "/bookStatus")
-    public String bookStatus(Model model, rentBean rentBean, FunDAO funDAO, HttpServletResponse response) {
+    public String bookStatus(Model model, rentBean rentBean, FunDAO funDAO, HttpServletResponse response, HttpSession session) {
+        if (session.getAttribute("admin") == null) {
+            response.setContentType("text/html; charset=utf-8");
+            try {
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('관리자만 이용가능합니다.'); location.href ='/'; </script>");
+                out.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "index";
+        }
         List<bookBean> res = null;
         res = funDAO.select("bookStatus", rentBean);
         model.addAttribute("res", res);
@@ -523,7 +534,7 @@ public class FunController {
             response.setContentType("text/html; charset=utf-8");
             try {
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('관리자만 이용가능합니다.');</script>");
+                out.println("<script>alert('관리자만 이용가능합니다.'); location.href ='/';</script>");
                 out.flush();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -577,7 +588,18 @@ public class FunController {
 
     // 수정 버튼 눌렀을 때 input 에 기존 value 불러 오기 위한 기능
     @RequestMapping(value = "/bookUpdate")
-    public String bookUpdate(Model model, HttpServletRequest req, SearchBean searchBean) {
+    public String bookUpdate(Model model, HttpServletRequest req, SearchBean searchBean, HttpSession session, HttpServletResponse response) {
+        if (session.getAttribute("admin") == null) {
+            response.setContentType("text/html; charset=utf-8");
+            try {
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('관리자만 이용가능합니다.'); location.href ='/'; </script>");
+                out.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "index";
+        }
         String type = req.getParameter("type");
         String inputValue = req.getParameter("inputValue");
         String start = req.getParameter("start");
@@ -593,7 +615,18 @@ public class FunController {
     }
 
     @RequestMapping(value = "/M_searchResult")
-    public String searchResult(Model model, HttpServletRequest req, SearchBean searchBean) {
+    public String searchResult(Model model, HttpServletRequest req, SearchBean searchBean, HttpSession session, HttpServletResponse response) {
+        if (session.getAttribute("admin") == null) {
+            response.setContentType("text/html; charset=utf-8");
+            try {
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('관리자만 이용가능합니다.'); location.href ='/'; </script>");
+                out.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "index";
+        }
         String type = req.getParameter("type");
         String inputValue = req.getParameter("inputValue");
         String start = req.getParameter("start");
@@ -657,11 +690,6 @@ public class FunController {
     }
 
     //*******************************************************김민건
-    @RequestMapping(value = "/adminPage")
-    public String management() {
-        System.out.println("adminPage 컨트롤러 콜");
-        return "adminPage";
-    }
 
     @RequestMapping(value = "/returnPage")
     public String returnPage(HttpServletRequest request, Model model, bookBean bB, HttpSession session, HttpServletResponse response) {
@@ -669,7 +697,7 @@ public class FunController {
             response.setContentType("text/html; charset=utf-8");
             try {
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('관리자만 이용가능합니다.');</script>");
+                out.println("<script>alert('관리자만 이용가능합니다.'); location.href ='/';</script>");
                 out.flush();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -708,7 +736,7 @@ public class FunController {
         if (session.getAttribute("admin") == null) {
             try {
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('관리자만 이용가능합니다.');</script>");
+                out.println("<script>alert('관리자만 이용가능합니다.'); location.href ='/';</script>");
                 out.flush();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -830,11 +858,6 @@ public class FunController {
         return "rentPage";
     }
 
-    @RequestMapping(value = "/normalPage")
-    public String normalPage() {
-        System.out.println("join 콜");
-        return "normalPage";
-    }
 
     //회원가입 안내 페이지로 이동
     @RequestMapping(value = "/memberJoinEx")
@@ -860,7 +883,7 @@ public class FunController {
             response.setContentType("text/html; charset=utf-8");
             try {
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('잘못된 접근입니다.');</script>");
+                out.println("<script>alert('잘못된 접근입니다.'); location.href ='/'; </script>");
                 out.flush();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -872,12 +895,48 @@ public class FunController {
     @RequestMapping(value = "/myReserve")
     public String myReserve(Model model, HttpServletRequest req, HttpServletResponse response,
                             HttpSession session) {
+
+        response.setContentType("text/html; charset=utf-8");
+
         String mem_id = (String) session.getAttribute("member");
+
         FunDAO funDAO = new FunDAO();
         List<reserveBean> reserve = null;
+
         reserve = funDAO.select("myReserve", mem_id);
         model.addAttribute("res", reserve);
-        return "myReserve";
+        if (session.getAttribute("member") != null) {
+            System.out.println("mem_myrent 콜");
+            System.out.println(session.getAttribute("member"));
+            String id = (String) session.getAttribute("member");
+
+            if (id != null) {
+                model.addAttribute("mem", funDAO.searching("mem_myrent", id));
+                return "mem_myrent";
+            } else {
+                try {
+                    response.setContentType("text/html; charset=utf-8");
+                    PrintWriter out = response.getWriter();
+                    out.println("<script>alert('로그인 해주세요.'); location.href ='/login';</script>");
+                    out.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    return "index";
+                }
+            }
+        } else {
+            try {
+                response.setContentType("text/html; charset=utf-8");
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('로그인 해주세요.'); location.href ='/login';</script>");
+                out.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "index";
+        }
+//        return "myReserve";
     }
 
     @RequestMapping(value = "/reserveDelete")

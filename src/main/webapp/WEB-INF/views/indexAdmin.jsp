@@ -26,9 +26,10 @@
             <input type="text" name="id"
                    style="width: 175px; background-color: #eeeeee; float: left; height: 28px; margin-right: 10px;">
             <input type="submit" value="확인"
-                   style="background-color: rgb(118, 175, 107); color: white; width: 113px; height: 29px;">
+
+                   style="background-color: rgb(118, 175, 107); color: white; width: 113px; height: 29px; border-radius: 20px;">
             <input type="button" value="반납" onclick="openReturn()"
-                   style="background-color: rgb(118, 175, 107); color: white; width: 113px; height: 29px; margin-left: 150px;">
+                   style="background-color: rgb(118, 175, 107); color: white; width: 113px; height: 29px; margin-left: 150px; border-radius: 20px;">
         </form>
         <!-- ========================= 어드민 저장 ======================= -->
         <input type="hidden" value="admin" id="admin_id">
@@ -40,10 +41,25 @@
             if (mem != null) {
         %>
         <a style="float: left; font-size: 20px; margin-left: 37%; color: black;">조회중 ID : &nbsp;</a>
-        <a style="float: left; font-size: 20px; color: red; width: 185px; padding-left: 5px;">${id}</a>
+        <a style="float: left; font-size: 20px; color: green; width: 185px; padding-left: 5px; font-weight: bolder;">${id}</a>
         <input type="hidden" value="${id}" id="memId">
-        <input type="button" value="대출" onclick="openRent()"
-               style="background-color: rgb(118, 175, 107); color: white; width: 113px; height: 29px; margin-bottom: 20px;">
+        <input type="button" id="rentbtn" value="대출" onclick="openRent()"
+               style="background-color: rgb(118, 175, 107); color: white; width: 113px; height: 29px; margin-bottom: 20px; border-radius: 20px;">
+        <br/>
+        <a style="font-size: 20px;  margin-left: 37%; color: black;">상태 : </a>
+        <%
+            if (mem.size() >= 5) {
+        %>
+        <a style="font-size: 20px; color: red;">대여불가 (최대 대여수 초과!!)</a>
+        <%
+        } else {
+        %>
+        <a style="font-size: 20px; color: blue;">대여가능</a>
+        <%
+            }
+        %>
+        <br/><br/>
+        <input type="hidden" value="<%=mem.size()%>" id="rentCount">
 
         <table>
             <tr>
@@ -52,8 +68,8 @@
                         <table>
                             <thead>
                             <tr>
-                                <th colspan="8"> 대여 상태 <%=mem.size() %>
                                 </th>
+                                <th colspan="8"> 대여 상태 <%=mem.size() %>권</th>
                             </tr>
                             <tr>
                                 <th>BOOK ID</th>
@@ -91,7 +107,8 @@
                                           action="extendReturnDateSub">
                                         <input type="hidden" name="book_b_id" value="<%=item.get("b_id")%>">
                                         <input type="hidden" name="member_mem_id" value="${id}">
-                                        <input type="submit" value="연장">
+
+                                        <input type="submit" value="연장" style="border-radius: 20px;">
                                     </form>
                                     <%
                                     } else {
@@ -114,7 +131,7 @@
                     <table style="margin-top: 50px;">
                         <thead>
                         <tr>
-                            <th colspan="6"> 예약 상태</th>
+                            <th colspan="6"> 예약 상태 ${res.size()}권</th>
                         </tr>
                         <tr>
                             <th> BOOK ID</th>
@@ -144,7 +161,8 @@
                                           action="reserveDeleteAdmin">
                                         <input type="hidden" name="b_id" value="${list.b_id}">
                                         <input type="hidden" name="member" value="${id}">
-                                        <input type="submit" value="취소">
+
+                                        <input type="submit" value="취소" style="border-radius: 20px;">
                                     </form>
                                 </td>
                             </tr>
@@ -162,6 +180,12 @@
 </div>
 
 <script type="text/javascript">
+    const rentCount = document.querySelector("#rentCount").value;
+    const rentbtn = document.querySelector("#rentbtn");
+    if (rentCount >= 5) {
+        rentbtn.disabled = true;
+    }
+
     function openReturn() {
         const adminId = document.querySelector("#admin_id").value;
         window.open("/returnPage?mem_id=" + adminId, "", "width=582,height=360");

@@ -23,32 +23,32 @@
                 <tr>
                     <td>도서명</td>
                     <td><input required type="text" name="b_name"
-                               placeholder="도서명" value="이방인"></td>
+                               placeholder="도서명" value=""></td>
                 </tr>
                 <tr>
                     <td>저자</td>
                     <td><input type="text" name="b_author" placeholder="저자"
-                               value="알베르 카뮈" required></td>
+                               value="" required></td>
                 </tr>
                 <tr>
                     <td>출판사</td>
                     <td><input type="text" name="b_publisher" placeholder="출판사"
-                               value="더클래식" required></td>
+                               value="" required></td>
                 </tr>
                 <tr>
                     <td>분류</td>
                     <td><input type="text" name="b_genre" placeholder="분류"
-                               value="문학" required></td>
+                               value="" required></td>
                 </tr>
                 <tr>
                     <td>ISBN</td>
                     <td><input type="text" name="b_ISBN" placeholder="ISBN"
-                               value="9791155517628" required></td>
+                               value="" required></td>
                 </tr>
                 <tr>
                     <td>청구기호</td>
                     <td><input type="text" name="b_call_number"
-                               placeholder="청구기호" value="800.알970이" required></td>
+                               placeholder="청구기호" value="" required></td>
                 </tr>
                 <tr>
                     <td>첨부파일</td>

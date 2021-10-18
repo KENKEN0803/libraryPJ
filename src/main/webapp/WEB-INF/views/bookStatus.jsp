@@ -15,8 +15,9 @@
     List<Map<String, Object>> mem = (List<Map<String, Object>>) request.getAttribute("total");
 %>
 
+<h1 align="center" style="margin-top: 10px">전체 도서 현황</h1>
+<hr/>
 <table class="table" style="margin: auto">
-    <hr/>
     <caption>전체 도서 <%=mem.get(0).get("count")%>권 중 ${res.size()}권 대여중</caption>
     <thead>
     <tr>

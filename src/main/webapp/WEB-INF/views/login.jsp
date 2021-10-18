@@ -17,6 +17,7 @@
         <jsp:useBean id="recv" class="Pack.memberBean" scope="page"/>
         <jsp:setProperty name="recv" property="*"/>
 
+
         <form method=POST action="login_mem">
             <div>
                 <table width="500px" height="250px" border="1" cellpadding="5" align="center"

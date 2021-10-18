@@ -15,7 +15,9 @@
 </style>
 <body>
 <div>
-    <%@include file="head.jsp" %>
+
+    <%@include file="headClean.jsp" %>
+
 </div>
 <div style="margin: auto; text-align: center;">
     <jsp:useBean id="recv" class="Pack.adminBean" scope="page"/>
@@ -45,7 +47,8 @@
     </div>
 </div>
 <div align="center">
-    <button onclick="location.href='/'" class="btn btn-outline-dark btn-lg">회원 로그인</button>
+
+    <button onclick="location.href='/login'" class="btn btn-outline-dark btn-lg">회원 로그인</button>
 </div>
 <div>
     <%@include file="footer.jsp" %>

@@ -337,7 +337,7 @@
                  left JOIN book b ON r.book_b_id = b.b_id
                  left JOIN reserve c ON r.book_b_id = c.book_b_id
         where r.book_b_id = b.b_id
-          and r.member_mem_id = 'we'
+          and r.member_mem_id = #{id}
           and b.b_ISBN > 1
           AND r.rent_tf = 1
         order by r.rent_date;

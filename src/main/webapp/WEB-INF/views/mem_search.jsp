@@ -44,6 +44,8 @@
 </style>
 <body>
 <%@include file="headAdmin.jsp" %>
+<h1 align="center" style="margin-top: 10px">회원 관리</h1>
+<hr/>
 <form method="post" action="mem_searching" style=" margin-top:1%; margin-bottom:1%;">
     <h4 style="float:left; margin-left:35%; ">회원 ID </h4>
     <input type="text" name="mem_id" placeholder="id"
