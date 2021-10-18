@@ -136,26 +136,25 @@ public class FunController {
 
     @RequestMapping(value = "/mem_updating")
     public String mem_updating(Model model, FunDAO funDAO, memberBean bean, HttpServletResponse response, HttpSession session) {
-
         if (session.getAttribute("admin") == null) {
             response.setContentType("text/html; charset=utf-8");
             try {
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('관리자만 이용가능합니다.'); location.href='/';</script>");
+                out.println("<script>alert('관리자만 이용가능합니다.');</script>");
                 out.flush();
             } catch (Exception e) {
                 e.printStackTrace();
             }
             return "index";
         }
-
         System.out.println("mem_updating 컨트롤러 콜");
         System.out.println(bean.getMem_id() + " mem_updating");
-        funDAO.update("mem_updating", bean);
-        if (bean.getMem_id() == null) {
-            model.addAttribute("mem", funDAO.select("mem_select"));
-            return "mem_search";
+        if (bean.getMem_val_date().equals("null")) {
+            funDAO.update("mem_updating_null", bean);
+            model.addAttribute("mem", funDAO.searching("mem_searching", bean.getMem_id()));
+            return "redirect:/mem_fix?mem_id=" + bean.getMem_id();
         } else {
+            funDAO.update("mem_updating", bean);
             model.addAttribute("mem", funDAO.searching("mem_searching", bean.getMem_id()));
             return "redirect:/mem_fix?mem_id=" + bean.getMem_id();
         }

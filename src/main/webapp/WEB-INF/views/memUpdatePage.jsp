@@ -14,8 +14,19 @@
 </style>
 <body>
 <div>
-    <%@include file="head.jsp" %>
+    <%@include file="headClean.jsp" %>
 </div>
+<div id="ei-slider" class="ei-slider">
+    <ul class="ei-slider-large">
+        <li>
+            <img src="images/mainImg.jpg" alt="image10" class="responsiveslide">
+            <div class="ei-title">
+                <a style="font-size: 46px; font-weight: 900; color: white; margin-left: -60px">회원 정보 수정</a>
+            </div>
+        </li>
+    </ul>
+</div>
+<hr>
 <div style="margin: auto; text-align: center;">
     <%
         memberBean m = new memberBean();

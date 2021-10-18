@@ -8,6 +8,7 @@
     <update id="mem_updating" parameterType="Pack.memberBean">
         update member
         set mem_tel      = #{mem_tel},
+            mem_name=#{mem_name},
             mem_val_date = #{mem_val_date},
             mem_cnt      = #{mem_cnt}
         where mem_id = #{mem_id}
@@ -362,5 +363,13 @@
         from reserve
         where book_b_id = #{b_id}
     </select>
+
+    <update id="mem_updating_null" parameterType="Pack.memberBean">
+        update member
+        set mem_tel = #{mem_tel},
+            mem_name = #{mem_name},
+            mem_cnt = #{mem_cnt}
+        where mem_id = #{mem_id}
+    </update>
 
 </mapper>

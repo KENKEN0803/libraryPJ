@@ -12,11 +12,20 @@
 <body>
 <div>
     <%@include file="headClean.jsp" %>
-
+    <div id="ei-slider" class="ei-slider">
+        <ul class="ei-slider-large">
+            <li>
+                <img src="images/mainImg.jpg" alt="image10" class="responsiveslide">
+                <div class="ei-title">
+                    <a style="font-size: 46px; font-weight: 900; color: white; margin-left: 0">로그인</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <hr>
     <div class="row" align='center'>
         <jsp:useBean id="recv" class="Pack.memberBean" scope="page"/>
         <jsp:setProperty name="recv" property="*"/>
-
 
         <form method=POST action="login_mem">
             <div>

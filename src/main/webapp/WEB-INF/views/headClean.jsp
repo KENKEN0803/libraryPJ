@@ -61,14 +61,3 @@
 </div>
 
 
-<div id="ei-slider" class="ei-slider">
-    <ul class="ei-slider-large">
-        <li>
-            <img src="images/mainImg.jpg" alt="image10" class="responsiveslide">
-            <div class="ei-title">
-                <a style="font-size: 46px; font-weight: 900; color: white; margin-left: 0">로그인</a>
-            </div>
-        </li>
-    </ul>
-</div>
-<hr>

@@ -188,12 +188,12 @@
 
     function openReturn() {
         const adminId = document.querySelector("#admin_id").value;
-        window.open("/returnPage?mem_id=" + adminId, "", "width=582,height=360");
+        window.open("/returnPage?mem_id=" + adminId,"", "width=844,height=473");
     }
 
     function openRent() {
         const memId = document.querySelector("#memId").value;
-        window.open("/rentPage?mem_id=" + memId, "", "width=582,height=360");
+        window.open("/rentPage?mem_id=" + memId,"", "width=844,height=473");
     }
 </script>
 
