@@ -23,8 +23,8 @@
         <table style="margin: auto" width="50%">
             <tr>
                 <td>
-                	<img src="./images/bookcover/${list.b_ISBN}.PNG"
-                    onerror="this.src='./images/bookcover/no-img.png'" width="250"/>
+                    <img src="./images/bookcover/${list.b_ISBN}.PNG"
+                         onerror="this.src='./images/bookcover/no-img.png'" width="250"/>
                 </td>
                 <td style="text-align: left">
                     <div style="font-weight: bold; font-size: large">도서명 : ${list.b_name}</div>

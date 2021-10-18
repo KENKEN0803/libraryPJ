@@ -25,14 +25,14 @@ public class bookBean {
     }
 
     public String getMember_mem_id() {
-		return member_mem_id;
-	}
+        return member_mem_id;
+    }
 
-	public void setMember_mem_id(String member_mem_id) {
-		this.member_mem_id = member_mem_id;
-	}
+    public void setMember_mem_id(String member_mem_id) {
+        this.member_mem_id = member_mem_id;
+    }
 
-	public String getLoginId() {
+    public String getLoginId() {
         return loginId;
     }
 

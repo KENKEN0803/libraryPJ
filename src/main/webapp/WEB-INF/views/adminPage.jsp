@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>가상 admin Page</title>
+    <meta charset="UTF-8">
+    <title>가상 admin Page</title>
 </head>
 <body>
 <script type="text/javascript">
-function openReturn() {
-	window.open("/returnPage?mem_id=we","", "width=582,height=360");
-}
+    function openReturn() {
+        window.open("/returnPage?mem_id=we", "", "width=582,height=360");
+    }
 
-function openRent() {
-	window.open("/rentPage?mem_id=we","", "width=582,height=360");
-}
+    function openRent() {
+        window.open("/rentPage?mem_id=we", "", "width=582,height=360");
+    }
 </script>
 
 <h1>여기는 가상 admin page 대여관리 메뉴 입니다</h1>

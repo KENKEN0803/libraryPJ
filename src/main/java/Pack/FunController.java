@@ -39,7 +39,7 @@ public class FunController {
     }
 
     @RequestMapping(value = "/indexAdmin")
-    public String indexAdmin(HttpSession session, Model model,HttpServletResponse response,adminBean adminBean, HttpServletRequest req) {
+    public String indexAdmin(HttpSession session, Model model, HttpServletResponse response, adminBean adminBean, HttpServletRequest req) {
         System.out.println("indexAdmin 컨트롤러 콜");
         FunDAO funDAO = new FunDAO();
         List<reserveBean> reserve = null;
@@ -47,20 +47,20 @@ public class FunController {
         System.out.println(id);
         memberBean mb = new memberBean();
         mb.setMem_id(id);
-        if(id != null) {
-            if(funDAO.select_mem("id_check",mb) > 0) {
+        if (id != null) {
+            if (funDAO.select_mem("id_check", mb) > 0) {
                 reserve = funDAO.select("myReserve", id);
                 model.addAttribute("res", reserve);
-                model.addAttribute("mem",funDAO.searching("mem_myrent", id));
-                model.addAttribute("id",id);
+                model.addAttribute("mem", funDAO.searching("mem_myrent", id));
+                model.addAttribute("id", id);
                 return "indexAdmin";
             } else {
                 response.setContentType("text/html; charset=utf-8");
                 try {
-                    PrintWriter out=response.getWriter();
+                    PrintWriter out = response.getWriter();
                     out.println("<script>alert('존재하지 않는 회원입니다.');</script>");
                     out.flush();
-                }catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -844,25 +844,25 @@ public class FunController {
 
     //반납 기능적 부분임 업데이트하세여
     @RequestMapping(value = "/extendReturnDateSub")
-    public String extendReturnDateSub(rentBean rB, Model model, HttpServletResponse response){ //이부분 추가필요 일단 업데이트에 필요한것만 인자로 받는다
+    public String extendReturnDateSub(rentBean rB, Model model, HttpServletResponse response) { //이부분 추가필요 일단 업데이트에 필요한것만 인자로 받는다
         System.out.println("extendReturnDate 컨트롤러 콜");
         FunDAO funDAO = new FunDAO();
         List<reserveBean> reserve = null;
         funDAO.update("extendReturnDate", rB);
         String id = rB.getMember_mem_id();
-        if(id != null) {
+        if (id != null) {
             reserve = funDAO.select("myReserve", id);
             model.addAttribute("res", reserve);
-            model.addAttribute("mem",funDAO.searching("mem_myrent", id));
-            model.addAttribute("id",id);
+            model.addAttribute("mem", funDAO.searching("mem_myrent", id));
+            model.addAttribute("id", id);
             return "indexAdmin";
         } else {
             response.setContentType("text/html; charset=utf-8");
             try {
-                PrintWriter out=response.getWriter();
+                PrintWriter out = response.getWriter();
                 out.println("<script>alert('잘못된 접근입니다.');</script>");
                 out.flush();
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -901,20 +901,20 @@ public class FunController {
         funDAO.delete("reserveDelete", rb);
         return "index";
     }
-    
+
     @RequestMapping(value = "/reserveDeleteAdmin")
     public String reserveDeleteAdmin(Model model, HttpServletRequest req, HttpServletResponse response, HttpSession session) {
         FunDAO funDAO = new FunDAO();
         memberBean mb = new memberBean();
         reserveBean rb = new reserveBean();
         List<reserveBean> reserve = null;
-        
-    	String b_id = req.getParameter("b_id");
-        String id = (String)req.getParameter("member");
-        
+
+        String b_id = req.getParameter("b_id");
+        String id = (String) req.getParameter("member");
+
         mb.setMem_id(id);
         reserve = funDAO.select("myReserve", id);
-        
+
         response.setContentType("text/html; charset=utf-8");
         PrintWriter out;
         try {
@@ -928,8 +928,8 @@ public class FunController {
         rb.setMem_id(id);
         funDAO.delete("reserveDelete", rb);
         model.addAttribute("res", reserve);
-        model.addAttribute("mem",funDAO.searching("mem_myrent", id));
-        model.addAttribute("id",id);
+        model.addAttribute("mem", funDAO.searching("mem_myrent", id));
+        model.addAttribute("id", id);
         return "indexAdmin";
     }
 

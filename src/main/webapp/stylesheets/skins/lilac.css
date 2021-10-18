@@ -1,34 +1,146 @@
-.nav-bar > li:hover, .nav-bar > li a:hover  { color:rgb(3, 102, 53)}
-.nav-bar > li.active > a { }
-ul.flyout li a:hover, .nav-bar li ul li a:hover {color:rgb(3, 102, 53);}
-.flyout {border-top:2px solid rgb(3, 102, 53);}
-.sectiontitle {border-left: 4px solid rgb(3, 102, 53);}
-::-moz-selection{background:rgb(3, 102, 53);color:#fff;}
-::selection{background:rgb(3, 102, 53);color:#fff;}
-.ca-menu li:hover .ca-main {color: rgb(3, 102, 53);}
-.topborder { border-top:4px solid rgb(3, 102, 53);}
-#subheader{background: rgb(3, 102, 53);border-top: 1px solid rgb(3, 102, 53); color: #fff;}
-#subheader a {color: #fff;text-decoration: none;}
-#subheader a:hover { text-decoration: none; color: #fff; }
- .readmore {background:rgb(3, 102, 53);}
- #testimonials blockquote cite {color:rgb(3, 102, 53);}
-.tags {background:#333;}
-ul.pagination li.current a {background: rgb(3, 102, 53);}
-.saymore {color:rgb(3, 102, 53);}
-.submit {background:rgb(3, 102, 53);}
-dl.tabs dd.active { border-top: 3px solid rgb(3, 102, 53);}
-ul.accordion > li.active {border-top: 3px solid rgb(3, 102, 53);}
-div.alert-box.default { background-color: rgb(3, 102, 53);}
-.slide {	margin: 0;	padding: 0;	border-top: solid 4px rgb(3, 102, 53);}
-.btn-slide {	background:rgb(3, 102, 53) url(../../images/plus.png) no-repeat;}
-.btn-slide.active { background: rgb(3, 102, 53) url(../../images/minus.png) no-repeat;}
-#footer {border-top:rgb(3, 102, 53) 4px solid;}
-.back-top a:hover{background-color: #666;}
-.sf-shadow ul {border-top:2px solid rgb(3, 102, 53);}
-.panel {border-left:4px solid rgb(3, 102, 53);}
-.colorbackground {background:rgb(3, 102, 53);}
-#homesubheader {background:#222;}
-a.projectdetail { background: #ccc;text-shadow:none;color:#111;}
-a.projectdetail:hover { background: #ccc;text-shadow:none;color:#111;}
-#testimonials {border-left: solid 6px rgb(3, 102, 53);}
-.ei-title h2{background:rgb(3, 102, 53);}
+.nav-bar > li:hover, .nav-bar > li a:hover {
+    color: rgb(3, 102, 53)
+}
+
+.nav-bar > li.active > a {
+}
+
+ul.flyout li a:hover, .nav-bar li ul li a:hover {
+    color: rgb(3, 102, 53);
+}
+
+.flyout {
+    border-top: 2px solid rgb(3, 102, 53);
+}
+
+.sectiontitle {
+    border-left: 4px solid rgb(3, 102, 53);
+}
+
+::-moz-selection {
+    background: rgb(3, 102, 53);
+    color: #fff;
+}
+
+::selection {
+    background: rgb(3, 102, 53);
+    color: #fff;
+}
+
+.ca-menu li:hover .ca-main {
+    color: rgb(3, 102, 53);
+}
+
+.topborder {
+    border-top: 4px solid rgb(3, 102, 53);
+}
+
+#subheader {
+    background: rgb(3, 102, 53);
+    border-top: 1px solid rgb(3, 102, 53);
+    color: #fff;
+}
+
+#subheader a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#subheader a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.readmore {
+    background: rgb(3, 102, 53);
+}
+
+#testimonials blockquote cite {
+    color: rgb(3, 102, 53);
+}
+
+.tags {
+    background: #333;
+}
+
+ul.pagination li.current a {
+    background: rgb(3, 102, 53);
+}
+
+.saymore {
+    color: rgb(3, 102, 53);
+}
+
+.submit {
+    background: rgb(3, 102, 53);
+}
+
+dl.tabs dd.active {
+    border-top: 3px solid rgb(3, 102, 53);
+}
+
+ul.accordion > li.active {
+    border-top: 3px solid rgb(3, 102, 53);
+}
+
+div.alert-box.default {
+    background-color: rgb(3, 102, 53);
+}
+
+.slide {
+    margin: 0;
+    padding: 0;
+    border-top: solid 4px rgb(3, 102, 53);
+}
+
+.btn-slide {
+    background: rgb(3, 102, 53) url(../../images/plus.png) no-repeat;
+}
+
+.btn-slide.active {
+    background: rgb(3, 102, 53) url(../../images/minus.png) no-repeat;
+}
+
+#footer {
+    border-top: rgb(3, 102, 53) 4px solid;
+}
+
+.back-top a:hover {
+    background-color: #666;
+}
+
+.sf-shadow ul {
+    border-top: 2px solid rgb(3, 102, 53);
+}
+
+.panel {
+    border-left: 4px solid rgb(3, 102, 53);
+}
+
+.colorbackground {
+    background: rgb(3, 102, 53);
+}
+
+#homesubheader {
+    background: #222;
+}
+
+a.projectdetail {
+    background: #ccc;
+    text-shadow: none;
+    color: #111;
+}
+
+a.projectdetail:hover {
+    background: #ccc;
+    text-shadow: none;
+    color: #111;
+}
+
+#testimonials {
+    border-left: solid 6px rgb(3, 102, 53);
+}
+
+.ei-title h2 {
+    background: rgb(3, 102, 53);
+}
