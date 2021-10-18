@@ -4,24 +4,319 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Mapper">
-    <insert id="test02" parameterType="int">
-        insert into table01(age)
-        values (#{age})
+	<!-- ********************************송용민 -->
+    <update id="mem_updating" parameterType="Pack.memberBean">
+        update member
+        set mem_tel = #{mem_tel},
+        mem_val_date = #{mem_val_date},
+        mem_cnt = #{mem_cnt}
+        where mem_id = #{mem_id}
+    </update>
+    <select id="mem_searching" parameterType="string" resultType="map">
+        select *
+        from member
+        where mem_id = #{id};
+    </select>
+    <select id="mem_select" parameterType="string" resultType="map">
+        select *
+        from member
+    </select>
+    
+    <!-- ***************************************채송화 -->
+    <insert id="insert_mem" parameterType="Pack.memberBean">
+        insert into member(mem_id,mem_pass,mem_name,mem_reg,mem_tel)
+        values (#{mem_id},#{mem_pass},#{mem_name},#{mem_reg},#{mem_tel})
     </insert>
 
-    <delete id="test03" parameterType="int">
+    <delete id="mem_delete" parameterType="Pack.memberBean">
         delete
-        from table01
-        where age = #{age}
+        from member
+        where mem_id = #{mem_id}
     </delete>
 
-    <update id="test04" parameterType="int">
-        update table01
-        set age = 777
-        where age = #{age}
+    <update id="mem_update" parameterType="Pack.memberBean">
+        update member
+        set mem_pass=#{mem_pass},mem_tel=#{mem_tel}, mem_name=#{mem_name}
+        where mem_id=#{mem_id}
     </update>
-    <select id="test01" resultType="int">
-        select age
-        from table01
+    <select id="find_id" parameterType="Pack.memberBean" resultType="String">
+        SELECT mem_id FROM member 
+        WHERE mem_name = #{mem_name} AND mem_reg = #{mem_reg}
     </select>
+      <select id="find_pass" parameterType="Pack.memberBean" resultType="String">
+        SELECT mem_pass FROM member 
+        WHERE mem_id = #{mem_id} AND mem_name = #{mem_name}
+    </select>
+    <select id="id_check" parameterType="String" resultType="int">
+        select count(*) from member 
+        where mem_id=#{mem_id}
+    </select>
+    <select id="login_mem" parameterType="Pack.memberBean" resultType="int">
+        SELECT COUNT(*) FROM member
+        WHERE mem_id = #{mem_id} AND mem_pass = #{mem_pass}
+    </select>
+    <select id="login_adm" parameterType="Pack.adminBean" resultType="int">
+        SELECT COUNT(*) FROM admin
+        WHERE ad_id = #{ad_id} AND ad_pass = #{ad_pass}
+    </select>
+     <select id="mem_search" parameterType="String" resultType="Pack.memberBean">
+        SELECT mem_id,mem_pass,mem_name,mem_reg,mem_tel,mem_val_date,mem_cnt 
+        FROM member
+        WHERE mem_id = #{mem_id}
+    </select>
+    
+    <!-- *********************************************************** -->
+    <update id="bookDelete" parameterType="Pack.bookBean">
+        update book
+        set b_name        = " ",
+            b_author      = " ",
+            b_publisher   = " ",
+            b_genre       = " ",
+            b_ISBN        = 0,
+            b_call_number = " "
+        where b_id = #{b_id};
+    </update>
+
+    <update id="bookUpdateInfo" parameterType="Pack.bookBean">
+        update book
+        set b_name        = #{b_name},
+            b_author      = #{b_author},
+            b_publisher   = #{b_publisher},
+            b_genre       = #{b_genre},
+            b_ISBN        = #{b_ISBN},
+            b_call_number = #{b_call_number}
+        where b_id = #{b_id};
+    </update>
+
+    <insert id="bookInsert" parameterType="Pack.bookBean">
+        insert into book(b_name, b_author, b_publisher, b_genre, b_ISBN, b_call_number)
+        values (#{b_name}, #{b_author}, #{b_publisher}, #{b_genre}, #{b_ISBN}, #{b_call_number});
+    </insert>
+    <select id="combineSearch" resultType="Pack.bookBean" parameterType="Pack.SearchBean">
+        select b_id,
+               b_name,
+               b_author,
+               b_publisher,
+               b_genre,
+               b_ISBN,
+               b_call_number,
+               r2.reserve_date,
+               r.return_date,
+               (count(r2.book_b_id = book.b_id)) as cnt
+        from book
+                 left join rent r on book.b_id = r.book_b_id AND r.rent_tf = 1
+                 left join reserve r2 on book.b_id = r2.book_b_id
+        where (b_author like CONCAT('%', #{input}, '%')
+           or b_name like CONCAT('%', #{input}, '%')
+           or b_publisher like CONCAT('%', #{input}, '%'))
+            and b_ISBN not like 0
+        group by b_id
+        limit #{start} , 5;
+    </select>
+
+    <select id="authorSearch" resultType="Pack.bookBean" parameterType="Pack.SearchBean">
+        select b_id,
+               b_name,
+               b_author,
+               b_publisher,
+               b_genre,
+               b_ISBN,
+               b_call_number,
+               r2.reserve_date,
+               r.return_date,
+               (count(r2.book_b_id = book.b_id)) as cnt
+        from book
+                 left join rent r on book.b_id = r.book_b_id
+                 left join reserve r2 on book.b_id = r2.book_b_id
+        where book.b_author like CONCAT('%', #{input}, '%')
+          and b_ISBN not like 0
+        group by b_id
+        limit #{start} , 5;
+    </select>
+    <select id="nameSearch" resultType="Pack.bookBean" parameterType="Pack.SearchBean">
+        select b_id,
+               b_name,
+               b_author,
+               b_publisher,
+               b_genre,
+               b_ISBN,
+               b_call_number,
+               r2.reserve_date,
+               r.return_date,
+               (count(r2.book_b_id = book.b_id)) as cnt
+        from book
+                 left join rent r on book.b_id = r.book_b_id
+                 left join reserve r2 on book.b_id = r2.book_b_id
+        where book.b_name like CONCAT('%', #{input}, '%')
+          and b_ISBN not like 0
+        group by b_id
+        limit #{start} , 5;
+    </select>
+    <select id="publisherSearch" resultType="Pack.bookBean" parameterType="Pack.SearchBean">
+        select b_id,
+               b_name,
+               b_author,
+               b_publisher,
+               b_genre,
+               b_ISBN,
+               b_call_number,
+               r2.reserve_date,
+               r.return_date,
+               (count(r2.book_b_id = book.b_id)) as cnt
+        from book
+                 left join rent r on book.b_id = r.book_b_id
+                 left join reserve r2 on book.b_id = r2.book_b_id
+        where book.b_publisher like CONCAT('%', #{input}, '%')
+          and b_ISBN not like 0
+        group by b_id
+        limit #{start} , 5;
+    </select>
+    <select id="ISBNSearch" resultType="Pack.bookBean" parameterType="Pack.SearchBean">
+        select b_id,
+               b_name,
+               b_author,
+               b_publisher,
+               b_genre,
+               b_ISBN,
+               b_call_number,
+               r2.reserve_date,
+               r.return_date,
+               (count(r2.book_b_id = book.b_id)) as cnt
+        from book
+                 left join rent r on book.b_id = r.book_b_id
+                 left join reserve r2 on book.b_id = r2.book_b_id
+        where b_ISBN = #{input}
+        group by b_id
+        limit #{start} , 5;
+    </select>
+    <select id="IdSearch" resultType="Pack.bookBean" parameterType="Pack.SearchBean">
+        select b_id,
+               b_name,
+               b_author,
+               b_publisher,
+               b_genre,
+               b_ISBN,
+               b_call_number,
+               r2.reserve_date,
+               r.return_date,
+               (count(r2.book_b_id = book.b_id)) as cnt
+        from book
+                 left join rent r on book.b_id = r.book_b_id
+                 left join reserve r2 on book.b_id = r2.book_b_id
+        where b_id = #{input}
+        group by b_id
+        limit #{start} , 5;
+    </select>
+    <insert id="reserveInsert" parameterType="Pack.bookBean">
+        insert into reserve (reserve_date, book_b_id, member_mem_id)
+        VALUES (#{reserve_date}, #{b_id}, #{loginId});
+    </insert>
+    <select id="idCHK" resultType="Pack.SearchBean" parameterType="String">
+        select member.mem_id
+        from member
+        where member.mem_id = #{id};
+    </select>
+    <select id="beforeReserveCHK" resultType="Pack.bookBean" parameterType="Pack.bookBean">
+        select count(*) as countReservedId from reserve where book_b_id = #{b_id} and member_mem_id = #{member_mem_id};
+    </select>
+    <!-- ****************************************************** -->
+    
+    <select id="IDSearch" resultType="Pack.bookBean"
+		parameterType="Pack.bookBean">
+		select b_id,
+		b_name,
+		b_author,
+		b_publisher,
+		b_genre,
+		b_ISBN,
+		b_call_number,
+        r2.member_mem_id,
+		r2.reserve_date,
+		r.return_date
+		from book
+		left join rent r on book.b_id = r.book_b_id AND r.rent_tf = 1
+		left join reserve r2 on book.b_id = r2.book_b_id
+		where b_id = #{b_id}
+	</select>
+
+    <insert id="rentInsert" parameterType="Pack.rentBean">
+        INSERT INTO rent(rent_date,return_date,rent_cnt,book_b_id,member_mem_id,admin_ad_id)
+        VALUES(now(),date_add(now(),interval 14 day),#{rent_cnt},#{book_b_id},#{member_mem_id},#{admin_ad_id})
+    </insert>
+    
+    <delete id="rentReserveDelete" parameterType="Pack.rentBean">
+        Delete FROM reserve WHERE book_b_id = #{book_b_id} AND member_mem_id = #{member_mem_id}
+    </delete>
+    
+    <update id="returnUpdate" parameterType="Pack.rentBean">
+        Update rent
+        SET rent_tf = 0
+        where book_b_id = #{book_b_id}
+    </update>
+    
+<!--     관리자 전체 대출현황 조회     -->
+    <select id="bookStatus" parameterType="Pack.rentBean" resultType="Pack.rentBean">
+        select b.b_name, rent_id, rent_tf, rent_date, return_date, rent_cnt, book_b_id, member_mem_id, admin_ad_id,
+               (select count(*) from rent where rent_tf = 0) as cnt
+        from rent join book b on rent.book_b_id = b.b_id
+        where rent_tf = 1 and b.b_name not like "";
+    </select>
+
+    <select id="bookTotal" parameterType="string" resultType="map">
+        select count(*) as count
+        from book
+        where b_ISBN not like 0;
+    </select>
+    <!-- 연장기능 부분 - 김민건 -  -->
+    <update id="extendReturnDate" parameterType="Pack.rentBean">
+        UPDATE rent
+        SET return_date = date_add(return_date, interval 3 day), rent_cnt = 0
+        where book_b_id = #{book_b_id} AND rent_tf = 1 AND rent_cnt = 1;
+    </update>
+
+    <select id="myReserve" resultType="Pack.reserveBean"
+            parameterType="String">
+        select b.b_id b_id,
+               b.b_name b_name,
+               b.b_author b_author,
+               a.reserve_date reserve_date,
+               Rank()Over(order by reserve_id) b_rank
+        from reserve a
+                 left join book b on a.book_b_id = b_id
+        where member_mem_id = #{mem_id}
+    </select>
+
+    <delete id="reserveDelete" parameterType="Pack.reserveBean">
+        Delete FROM reserve WHERE book_b_id = #{b_id} AND member_mem_id = #{mem_id}
+    </delete>
+
+    <select id="mem_myrent" parameterType="string" resultType="map">
+        select b.b_id, b.b_name, b.b_author, b.b_publisher, r.member_mem_id, r.rent_date, r.return_date, r.rent_cnt, c.book_b_id
+        from rent r left JOIN book b ON r.book_b_id = b.b_id left JOIN reserve c ON r.book_b_id = c.book_b_id
+        where r.book_b_id=b.b_id
+          and r.member_mem_id = #{id}
+          and b.b_ISBN > 1 AND r.rent_tf = 1
+        order by r.rent_date;
+    </select>
+    <select id="rent_count" parameterType="String" resultType="int">
+        select count(*)
+        from rent
+        where member_mem_id = #{member_mem_id}
+    </select>
+    <delete id="mem_reserve_delete" parameterType="Pack.memberBean">
+        delete
+        from reserve
+        where member_mem_id = #{member_mem_id}
+    </delete>
+    <select id="rent_count1" parameterType="String" resultType="int">
+        select count(*)
+        from rent
+        where book_b_id = #{b_id}
+    </select>
+    <select id="rent_count2" parameterType="String" resultType="int">
+        select count(*)
+        from reserve
+        where book_b_id = #{b_id}
+    </select>
+
 </mapper>
