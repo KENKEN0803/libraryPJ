@@ -895,6 +895,7 @@ public class FunController {
     @RequestMapping(value = "/myReserve")
     public String myReserve(Model model, HttpServletRequest req, HttpServletResponse response,
                             HttpSession session) {
+
         response.setContentType("text/html; charset=utf-8");
 
         String mem_id = (String) session.getAttribute("member");
@@ -990,4 +991,5 @@ public class FunController {
         model.addAttribute("id", id);
         return "indexAdmin";
     }
+
 }

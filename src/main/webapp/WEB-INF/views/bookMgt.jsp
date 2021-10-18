@@ -11,7 +11,6 @@
 <div class="total">
 
     <%@include file="headAdmin.jsp" %>
-    <!-- ================================================================== -->
     <h1 align="center" style="margin-top: 10px">도서 관리</h1>
     <hr/>
     <div class="row">
@@ -39,7 +38,6 @@
         </div>
     </div>
 </div>
-<!-- =========================FOOOTER =============================== -->
 <%@include file="footer.jsp" %>
 </div>
 </body>

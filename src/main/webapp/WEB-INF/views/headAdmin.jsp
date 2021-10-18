@@ -7,7 +7,8 @@
 <div class="row">
     <div class="headerlogo four columns">
         <div class="logo">
-            <a href="/">
+            <a href="indexAdmin">
+
                 <img alt="logo.png" src="images/logoAdmin.png">
             </a>
         </div>

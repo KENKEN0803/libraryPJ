@@ -26,6 +26,7 @@
             <input type="text" name="id"
                    style="width: 175px; background-color: #eeeeee; float: left; height: 28px; margin-right: 10px;">
             <input type="submit" value="확인"
+
                    style="background-color: rgb(118, 175, 107); color: white; width: 113px; height: 29px; border-radius: 20px;">
             <input type="button" value="반납" onclick="openReturn()"
                    style="background-color: rgb(118, 175, 107); color: white; width: 113px; height: 29px; margin-left: 150px; border-radius: 20px;">
@@ -67,6 +68,7 @@
                         <table>
                             <thead>
                             <tr>
+                                </th>
                                 <th colspan="8"> 대여 상태 <%=mem.size() %>권</th>
                             </tr>
                             <tr>
@@ -105,6 +107,7 @@
                                           action="extendReturnDateSub">
                                         <input type="hidden" name="book_b_id" value="<%=item.get("b_id")%>">
                                         <input type="hidden" name="member_mem_id" value="${id}">
+
                                         <input type="submit" value="연장" style="border-radius: 20px;">
                                     </form>
                                     <%
@@ -158,6 +161,7 @@
                                           action="reserveDeleteAdmin">
                                         <input type="hidden" name="b_id" value="${list.b_id}">
                                         <input type="hidden" name="member" value="${id}">
+
                                         <input type="submit" value="취소" style="border-radius: 20px;">
                                     </form>
                                 </td>
@@ -191,7 +195,6 @@
         const memId = document.querySelector("#memId").value;
         window.open("/rentPage?mem_id=" + memId, "", "width=582,height=360");
     }
-
 </script>
 
 </body>

@@ -19,30 +19,32 @@
 
 
         <form method=POST action="login_mem">
-            <table width="500px" height="250px" border="1" cellpadding="5" align="center">
-                <tr>
-                    <th colspan="2" style="text-align: center; font-size: larger"><br/>회원 로그인<br/><br/></th>
-                </tr>
-                <tr>
-                    <td style="text-align: center; font-weight: bold">아이디</td>
-                    <td>
-                        <input required type="text" name="mem_id" placeholder="아이디" maxlength="15" value="<%=
-				(recv.getMem_id() == null) ? "" : recv.getMem_id()
-				 %>">
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center; font-weight: bold">비밀번호</td>
-                    <td>
-                        <input type="password" name="mem_pass" placeholder="비밀번호" required maxlength="20">
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align: center"><input type="submit" value="로그인"
-                                                                      class="btn btn-dark btn-lg">
-                    </td>
-                </tr>
-            </table>
+            <div>
+                <table width="500px" height="250px" border="1" cellpadding="5" align="center"
+                       style="box-shadow:gray 0px 5px 3px 0px;">
+                    <tr>
+                        <th colspan="2" style="text-align: center; font-size: larger"><br/>회원 로그인<br/><br/></th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; font-weight: bold">아이디</td>
+                        <td>
+                            <input required type="text" name="mem_id" placeholder="아이디" maxlength="15" value="<%=
+					(recv.getMem_id() == null) ? "" : recv.getMem_id()
+					 %>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; font-weight: bold">비밀번호</td>
+                        <td>
+                            <input type="password" name="mem_pass" placeholder="비밀번호" required maxlength="20">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center"><input type="submit" value="로그인"
+                                                                          class="btn btn-dark btn-lg">
+                        </td>
+                    </tr>
+                </table>
         </form>
         <div align="center">
             <button onclick="location.href='/index_adm'" class="btn btn-outline-dark btn-lg">관리자 로그인</button>

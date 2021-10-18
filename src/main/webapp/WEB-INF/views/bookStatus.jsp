@@ -14,6 +14,7 @@
     int rowCnt = 1;
     List<Map<String, Object>> mem = (List<Map<String, Object>>) request.getAttribute("total");
 %>
+
 <h1 align="center" style="margin-top: 10px">전체 도서 현황</h1>
 <hr/>
 <table class="table" style="margin: auto">

@@ -29,6 +29,7 @@
                     <div style="font-weight: bold; font-size: large">도서명 : ${list.b_name}</div>
                     <br/>
                     <div style="font-weight: bold;">
+                        BOOK ID : ${list.b_id}<br/><br/>
                         저자 : ${list.b_author}<br/>
                         출판사 : ${list.b_publisher}<br/>
                         장르 : ${list.b_genre}<br/>
